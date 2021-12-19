@@ -24,7 +24,7 @@ specifiers:
   vite: ^2.7.3
   vite-plugin-purge-icons: ^0.7.0
   vite-plugin-windicss: ^1.5.4
-  vue: ^3.1.5
+  vue: ^3.2.26
   vue-i18n: ^9.1.7
   vue-router: ^4.0.10
   vue-tsc: ^0.29.8

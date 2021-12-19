@@ -1,6 +1,11 @@
 <template>
   <div>
-    <router-view></router-view>
+    <suspense>
+      <template #default>
+        <router-view></router-view>
+      </template>
+      <template #fallback> test </template>
+    </suspense>
   </div>
 </template>
 
