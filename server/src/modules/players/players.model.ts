@@ -1,4 +1,12 @@
+import { User } from '../users/users.model';
+
 export class Player {
-  id: string;
-  name: string;
+  user: User;
+  emoji: string;
+  lastInput?: Date;
+
+  constructor(user: User, emoji: string) {
+    this.user = user
+    this.emoji = emoji
+  }
 }

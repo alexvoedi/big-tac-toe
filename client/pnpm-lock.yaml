@@ -12,6 +12,7 @@ specifiers:
   '@vue/eslint-config-typescript': ^9.1.0
   '@vueuse/core': ^7.4.0
   '@vueuse/head': ^0.7.4
+  axios: ^0.24.0
   cross-env: ^7.0.3
   eslint: ^8.5.0
   eslint-plugin-prettier: ^3.4.1
@@ -32,6 +33,7 @@ specifiers:
 dependencies:
   '@vueuse/core': 7.4.0_vue@3.2.26
   '@vueuse/head': 0.7.4_vue@3.2.26
+  axios: 0.24.0
   pinia: 2.0.6_typescript@4.5.4+vue@3.2.26
   vue: 3.2.26
   vue-i18n: 9.1.9_vue@3.2.26
@@ -783,6 +785,14 @@ packages:
       - debug
     dev: true
 
+  /axios/0.24.0:
+    resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
+    dependencies:
+      follow-redirects: 1.14.6_debug@4.3.3
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /babel-walk/3.0.0-canary-5:
     resolution: {integrity: sha512-GAwkz0AihzY5bkwIY5QDR+LvsRQgB/B+1foMPvi0FZPMl5fjD7ICiznUiBdLYMH1QYe6vqu4gWYytZOccLouFw==}
     engines: {node: '>= 10.0.0'}
@@ -1444,7 +1454,6 @@ packages:
         optional: true
     dependencies:
       debug: 4.3.3
-    dev: true
 
   /fs-extra/9.1.0:
     resolution: {integrity: sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==}

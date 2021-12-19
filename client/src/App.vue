@@ -4,7 +4,10 @@
       <template #default>
         <router-view></router-view>
       </template>
-      <template #fallback> test </template>
+
+      <template #fallback>
+        <div>Loading</div>
+      </template>
     </suspense>
   </div>
 </template>

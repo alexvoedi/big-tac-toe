@@ -1,11 +1,18 @@
 import { defineStore } from "pinia";
 
+interface BaseStore {
+  user?: {
+    id: string;
+    name: string;
+  };
+}
+
 export const useBaseStore = defineStore({
   id: "base",
 
-  state() {
-    return {};
-  },
+  state: (): BaseStore => ({
+    user: undefined,
+  }),
 
   actions: {},
 
