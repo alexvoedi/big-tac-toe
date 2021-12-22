@@ -1,30 +1,41 @@
-import { Board } from 'src/classes/Board';
-import emojis from 'src/helpers/emojis';
+import { Board } from '../../classes/Board';
+import emojis from '../../helpers/emojis';
 import { Player } from '../players/players.model';
+import { Settings } from '../settings/settings.model';
 import { User } from '../users/users.model';
+import { IGame } from '../../../../common/interfaces/Game';
+import { randomUUID } from 'crypto';
 
-export class Game {
-  private availableEmojis: string[]
+export class Game implements IGame {
+  availableEmojis: string[];
 
-  admin: Player
-  players: Player[]
-  board: Board
+  id: string;
+  admin: Player;
+  players: Player[];
+  board: Board;
+  settings: Settings;
 
-  constructor(admin: User) {
-    this.availableEmojis = [...emojis]
-    this.players = []
-    this.admin = this.addPlayer(admin)
+  constructor(admin: User, settings: Settings) {
+    this.id = randomUUID();
+    this.availableEmojis = [...emojis];
+    this.players = [];
+    this.admin = this.addPlayer(admin);
+    this.settings = settings;
 
-    this.board = new Board()
+    this.board = new Board();
   }
 
   addPlayer(user: User) {
-    if (this.availableEmojis.length === 0) throw new Error('No more emojis available')
+    if (this.availableEmojis.length === 0)
+      throw new Error('No more emojis available');
 
-    const [emoji] = this.availableEmojis.splice(Math.floor(Math.random() * this.availableEmojis.length), 1)
+    const [emoji] = this.availableEmojis.splice(
+      Math.floor(Math.random() * this.availableEmojis.length),
+      1,
+    );
 
-    const player = new Player(user, emoji)
-    this.players.push(player)
-    return player
+    const player = new Player(user, emoji);
+    this.players.push(player);
+    return player;
   }
 }

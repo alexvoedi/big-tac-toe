@@ -7,9 +7,7 @@ interface BaseStore {
   };
 }
 
-export const useBaseStore = defineStore({
-  id: "base",
-
+export const useBaseStore = defineStore("base-store", {
   state: (): BaseStore => ({
     user: undefined,
   }),

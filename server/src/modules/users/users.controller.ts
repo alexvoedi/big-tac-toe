@@ -6,11 +6,11 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(
     @Inject(UsersService)
-    private readonly usersService: UsersService
+    private readonly usersService: UsersService,
   ) {}
 
   @Post()
   async createUser(@Body() dto: CreateUserDto) {
-    return this.usersService.createUser(dto)
+    return this.usersService.createUser(dto);
   }
 }
