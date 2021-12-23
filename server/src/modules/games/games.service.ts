@@ -55,6 +55,12 @@ export class GamesService {
     game.board.setPlayerForCell(dto.x, dto.y, player);
     player.lastInput = new Date();
 
+    console.log(this.checkWinCondition(game));
+
     return game.board;
+  }
+
+  checkWinCondition(game: Game) {
+    return game.board.nInARow(game.settings.nInARow);
   }
 }
