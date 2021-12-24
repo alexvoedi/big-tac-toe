@@ -30,13 +30,21 @@ export class GamesService {
     return game;
   }
 
+  getGames() {
+    return this.games;
+  }
+
   getGameById(id: string) {
     return this.games.find((game) => game.id === id);
   }
 
   playerInput(gameId: string, dto: PlayerInputDto) {
     const game = this.getGameById(gameId);
-    const player = game.players.find((player) => player.user.id === dto.id);
+    let player = game.players.find((player) => player.user.id === dto.id);
+
+    if (!player) {
+      player = game.addPlayer(this.usersService.getUserById(dto.id));
+    }
 
     if (player.lastInput) {
       const nextInputTime = dayjs(player.lastInput).add(
@@ -55,12 +63,12 @@ export class GamesService {
     game.board.setPlayerForCell(dto.x, dto.y, player);
     player.lastInput = new Date();
 
-    console.log(this.checkWinCondition(game));
+    console.log(game.board.nInARow(game.settings.nInARow));
+
+    if (game.board.size < 100) {
+      game.board.grow();
+    }
 
     return game.board;
-  }
-
-  checkWinCondition(game: Game) {
-    return game.board.nInARow(game.settings.nInARow);
   }
 }

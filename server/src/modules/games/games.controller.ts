@@ -17,7 +17,12 @@ export class GamesController {
 
   @Get()
   getGames() {
-    return;
+    return this.gamesService.getGames();
+  }
+
+  @Get(':id')
+  getGameById(@Param('id') id: string) {
+    return this.gamesService.getGameById(id);
   }
 
   @Post(':id')

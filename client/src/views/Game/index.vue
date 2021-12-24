@@ -2,7 +2,7 @@
   <div>
     <h1 class="text-xl">Game</h1>
 
-    <div class="table border-collapse">
+    <div class="table border-collapse overflow-scroll">
       <div class="table-row" v-for="y in gameStore.game?.board.size" :key="y">
         <div
           class="table-cell border w-16 h-16 align-middle text-center text-4xl"
@@ -11,7 +11,7 @@
           :key="x"
           @click="input(x - 1, y - 1)"
         >
-          {{ gameStore.game?.board.cells[x - 1][y - 1].player?.emoji }}
+          {{ gameStore.game?.board.cells[x - 1][y - 1]?.player?.emoji }}
         </div>
       </div>
     </div>
@@ -23,13 +23,17 @@ import { useBaseStore } from "@/store/base";
 import { useGameStore } from "@/store/game";
 import axios from "axios";
 
+const props = defineProps({
+  gameId: String,
+});
+
 const baseStore = useBaseStore();
 const gameStore = useGameStore();
 
 const input = async (x: number, y: number) => {
   if (!gameStore.game) return;
 
-  const url = `http://localhost:3000/games/${gameStore.game.id}`;
+  const url = `http://localhost:3000/games/${props.gameId}`;
 
   try {
     const { data: board } = await axios.post(url, {
@@ -37,6 +41,8 @@ const input = async (x: number, y: number) => {
       y,
       id: baseStore.user?.id,
     });
+
+    console.log(board);
 
     gameStore.game.board = board;
   } catch (e) {

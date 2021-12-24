@@ -59,4 +59,25 @@ export class Board implements IBoard {
 
     return false;
   }
+
+  grow() {
+    for (let i = 0; i < this.size; i++) {
+      this.cells[i].unshift(new Cell());
+      this.cells[i].push(new Cell());
+    }
+
+    this.size += 2;
+
+    const topRow = [];
+    for (let i = 0; i < this.size; i++) {
+      topRow.push(new Cell());
+    }
+    this.cells.unshift(topRow);
+
+    const bottomRow = [];
+    for (let i = 0; i < this.size; i++) {
+      bottomRow.push(new Cell());
+    }
+    this.cells.push(bottomRow);
+  }
 }
